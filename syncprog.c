@@ -34,3 +34,27 @@ void *teacher()
 	scanf("%d",&choice2);
 	pthread_mutex_unlock(&mlock);
 }
+void *student1()
+{
+	pthread_mutex_lock(&mlock);
+	printf("\nChoices made are paper and question paper\n");
+	students[1][4]=1;
+	printf("\nStudent 1 has completed the assignment.\n");
+	pthread_mutex_unlock(&mlock);
+}
+void *student2()
+{
+	pthread_mutex_lock(&mlock);
+	printf("\nChoices made are question paper and pen\n");
+	students[2][4]=1;
+	printf("\nStudent 2 has Completed the assignment. \n");
+	pthread_mutex_unlock(&mlock);
+}
+void *student3()
+{
+	pthread_mutex_lock(&mlock);
+	printf("\nChoices made are pen and paper\n");
+	students[3][4]=1;
+	printf("\nStudent 3 has completed the assignment.\n");
+	pthread_mutex_unlock(&mlock);
+}
