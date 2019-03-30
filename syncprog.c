@@ -22,6 +22,37 @@ int main()
 	students[2][2]=2;students[3][3]=1;
 	printf("Please select resource: \nPress 1 for paper\t\tPress 2 for question paper \t\t\tPress 3 for pen \n");
 
+	while(1)
+	{
+		if(students[1][4]==1 && students[2][4]==1 && students[3][4]==1){break;}
+
+		pthread_create(&teacher_t, NULL, teacher, NULL);
+	    pthread_join(teacher_t,NULL);
+
+		if((choice1==1 && choice2==2 || choice2==1 && choice1==2 ) && students[1][4]==0)
+		{
+		    //choices 1paper and 2questionpaper
+			pthread_create(&student_t, NULL, student1, NULL);
+			pthread_join(student_t,NULL);
+		}
+		else if((choice1==2 && choice2==3 || choice2==2 && choice1==3 ) && students[2][4]==0)
+		{
+		    //choices 2question paper and 3pen
+			pthread_create(&student_t, NULL, student2, NULL);
+			pthread_join(student_t,NULL);
+		}
+		else if((choice1==1 && choice2==3 || choice2==1 && choice1==3 ) && students[3][4]==0)
+		{
+		    //choice 1paper 3pen
+			pthread_create(&student_t, NULL, student3, NULL);
+			pthread_join(student_t,NULL);
+		}
+		else
+		{
+			printf("\nPlease take different choices\n");
+		}
+	}
+	printf("\nSuccessful\n");
 
 }
 
